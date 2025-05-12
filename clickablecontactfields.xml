@@ -5,7 +5,7 @@
     <copyright>(C) 2025 Frank Willeke</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <authorUrl>www.frankwilleke.de</authorUrl>
-    <version>1.0.6</version>
+    <version>1.0.8</version>
     <description>PLG_FIELDS_CLICKABLECONTACTFIELDS_DESC</description>
     <files>
         <filename plugin="clickablecontactfields">clickablecontactfields.php</filename>
@@ -48,6 +48,20 @@
                     label="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_SIGNAL_LABEL"
                     description="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_SIGNAL_DESC"
                     default="signal"
+                />
+                <field
+                    name="viber_fields"
+                    type="text"
+                    label="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_VIBER_LABEL"
+                    description="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_VIBER_DESC"
+                    default="viber"
+                />
+                <field
+                    name="facebook_fields"
+                    type="text"
+                    label="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_FACEBOOK_LABEL"
+                    description="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_FACEBOOK_DESC"
+                    default="facebook"
                 />
             </fieldset>
         </fields>
