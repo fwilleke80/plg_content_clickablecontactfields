@@ -1,0 +1,61 @@
+<extension type="plugin" group="fields" method="upgrade">
+    <name>PLG_FIELDS_CLICKABLECONTACTFIELDS</name>
+    <author>Frank Willeke</author>
+    <creationDate>May 2025</creationDate>
+    <copyright>(C) 2025 Frank Willeke</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorUrl>www.frankwilleke.de</authorUrl>
+    <version>1.0.6</version>
+    <description>PLG_FIELDS_CLICKABLECONTACTFIELDS_DESC</description>
+    <files>
+        <filename plugin="clickablecontactfields">clickablecontactfields.php</filename>
+    </files>
+    <group>fields</group>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="phone_fields"
+                    type="text"
+                    label="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_PHONE_LABEL"
+                    description="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_PHONE_DESC"
+                    default="phone,telephone,phone,landline,telefon-fn,telefon-mob,mobile,mobilephone,fax,telefon-fax"
+                />
+                <field
+                    name="sms_fields"
+                    type="text"
+                    label="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_SMS_LABEL"
+                    description="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_SMS_DESC"
+                    default="sms,telephone-sms,phone-sms"
+                />
+                <field
+                    name="whatsapp_fields"
+                    type="text"
+                    label="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_WHATSAPP_LABEL"
+                    description="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_WHATSAPP_DESC"
+                    default="whatsapp"
+                />
+                <field
+                    name="telegram_fields"
+                    type="text"
+                    label="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_TELEGRAM_LABEL"
+                    description="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_TELEGRAM_DESC"
+                    default="telegram"
+                />
+                <field
+                    name="signal_fields"
+                    type="text"
+                    label="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_SIGNAL_LABEL"
+                    description="PLG_FIELDS_CLICKABLECONTACTFIELDS_FIELD_SIGNAL_DESC"
+                    default="signal"
+                />
+            </fieldset>
+        </fields>
+    </config>
+    <languages>
+        <language tag="en-GB">language/en-GB/en-GB.plg_fields_clickablecontactfields.ini</language>
+        <language tag="en-GB">language/en-GB/en-GB.plg_fields_clickablecontactfields.sys.ini</language>
+        <language tag="de-DE">language/de-DE/de-DE.plg_fields_clickablecontactfields.ini</language>
+        <language tag="de-DE">language/de-DE/de-DE.plg_fields_clickablecontactfields.sys.ini</language>
+    </languages>
+</extension>
