@@ -2,7 +2,7 @@
 /**
  * @package     Joomla.Plugin
  * @subpackage  Fields.clickablecontactfields
- * @version     1.0.8
+ * @version     1.0.10
  * @author      Frank Willeke
  * @license     GNU/GPL
  */
@@ -36,16 +36,18 @@ class PlgFieldsClickablecontactfields extends CMSPlugin
 			return;
 		}
 
-		$name           = strtolower($field->name);
-		$phoneFields    = array_map('trim', explode(',', strtolower($this->params->get('phone_fields',    ''))));
-		$smsFields      = array_map('trim', explode(',', strtolower($this->params->get('sms_fields',    ''))));
-		$smsFields      = array_map('trim', explode(',', strtolower($this->params->get('sms_fields',    ''))));
-		$waFields       = array_map('trim', explode(',', strtolower($this->params->get('whatsapp_fields', ''))));
-		$tgFields       = array_map('trim', explode(',', strtolower($this->params->get('telegram_fields',''))));
-		$signalFields   = array_map('trim', explode(',', strtolower($this->params->get('signal_fields',   ''))));
-		$viberFields    = array_map('trim', explode(',', strtolower($this->params->get('viber_fields',   ''))));
-		$facebookFields = array_map('trim', explode(',', strtolower($this->params->get('facebook_fields',   ''))));
-		$sanitizeDigits = fn(string $v): string => preg_replace('/\D+/', '', $v);
+		$name            = strtolower($field->name);
+		$phoneFields     = array_map('trim', explode(',', strtolower($this->params->get('phone_fields',    ''))));
+		$smsFields       = array_map('trim', explode(',', strtolower($this->params->get('sms_fields',    ''))));
+		$smsFields       = array_map('trim', explode(',', strtolower($this->params->get('sms_fields',    ''))));
+		$waFields        = array_map('trim', explode(',', strtolower($this->params->get('whatsapp_fields', ''))));
+		$tgFields        = array_map('trim', explode(',', strtolower($this->params->get('telegram_fields',''))));
+		$signalFields    = array_map('trim', explode(',', strtolower($this->params->get('signal_fields',   ''))));
+		$viberFields     = array_map('trim', explode(',', strtolower($this->params->get('viber_fields',   ''))));
+		$facebookFields  = array_map('trim', explode(',', strtolower($this->params->get('facebook_fields',   ''))));
+		$instagramFields = array_map('trim', explode(',', strtolower($this->params->get('instagram_fields',   ''))));
+		$discordFields   = array_map('trim', explode(',', strtolower($this->params->get('discord_fields',   ''))));
+		$sanitizeDigits  = fn(string $v): string => preg_replace('/\D+/', '', $v);
 
 		// Phone
 		if (\in_array($name, $phoneFields, true))
@@ -76,7 +78,7 @@ class PlgFieldsClickablecontactfields extends CMSPlugin
 			$link  = preg_match('/^\+?\d+$/', $p)
 				   ? 'https://t.me/+'.$sanitizeDigits($p)
 				   : 'https://t.me/'.urlencode(ltrim($p, '@'));
-			$value = '<a href="'.$link.'" target="_blank" rel="noopener">'.htmlspecialchars($p).'</a>';
+			$value = '<a href="'.$link.'" target="_blank" rel="noopener">@'.htmlspecialchars($p).'</a>';
 		}
 		// Signal
 		elseif (\in_array($name, $signalFields, true))
@@ -84,14 +86,14 @@ class PlgFieldsClickablecontactfields extends CMSPlugin
 			Log::add('onCustomFieldsAfterPrepareField: '.$field->name.' = '.$value, Log::DEBUG, 'plg_fields_clickablecontactfields');
 			$num   = $sanitizeDigits($value);
 			$link  = 'https://signal.me/#p/+' . $num;
-			$value = '<a href="'.$link.'" target="_blank" rel="noopener">'.htmlspecialchars($value).'</a>';
+			$value = '<a href="'.$link.'" target="_blank" rel="noopener">@'.htmlspecialchars($value).'</a>';
 		}
 		// Viber
 		elseif (\in_array($name, $viberFields, true))
 		{
 			Log::add('onCustomFieldsAfterPrepareField: '.$field->name.' = '.$value, Log::DEBUG, 'plg_fields_clickablecontactfields');
 			$num   = $sanitizeDigits($value);
-			$link  = 'viber://chat?number=%' . $num ;
+			$link  = 'viber://chat?number=%' . $num;
 			$value = '<a href="'.$link.'" target="_blank" rel="noopener">'.htmlspecialchars($value).'</a>';
 		}
 		// Facebook
@@ -102,6 +104,22 @@ class PlgFieldsClickablecontactfields extends CMSPlugin
 			$pageLink      = 'https://www.facebook.com/' . urlencode(ltrim($p, '@'));
 			$messengerLink = 'https://m.me/' . urlencode(ltrim($p, '@'));
 			$value         = '<a href="'.$pageLink.'" target="_blank" rel="noopener">'.htmlspecialchars($value).'</a> (<a href="'.$messengerLink.'" target="_blank" rel="noopener">Messenger</a>)';
+		}
+		// Discord
+		elseif (\in_array($name, $discordFields, true))
+		{
+			Log::add('onCustomFieldsAfterPrepareField: '.$field->name.' = '.$value, Log::DEBUG, 'plg_fields_clickablecontactfields');
+			$p             = trim($value);
+			$link          = 'discord://-/users/' . urlencode(ltrim($p, '@'));
+			$value         = '<a href="'.$link.'" target="_blank" rel="noopener">'.htmlspecialchars($value).'</a>';
+		}
+		// Instagram
+		elseif (\in_array($name, $instagramFields, true))
+		{
+			Log::add('onCustomFieldsAfterPrepareField: '.$field->name.' = '.$value, Log::DEBUG, 'plg_fields_clickablecontactfields');
+			$p             = trim($value);
+			$link          = 'https://instagram.com/' . urlencode(ltrim($p, '@'));
+			$value         = '<a href="'.$link.'" target="_blank" rel="noopener">@'.htmlspecialchars($value).'</a>';
 		}
 	}
 }
